@@ -31,17 +31,16 @@ function handleShiftCheck(from, to){
         el.checked = true;
     });
     start = checkBox[to];
-    console.log(start)
     end = null;
 }
 
 function findElementIndex(){
    const startPoint = [...checkBox].findIndex(el => el.checked === true && el === start);
-   console.log(startPoint);
+
    const endPoint = [...checkBox].findIndex(el => {
        return el !== checkBox[startPoint] && el.checked === true && el === end;
    } )
-   console.log(endPoint);
+
   if(endPoint !== -1){
       handleShiftCheck(startPoint, endPoint);
   } 
@@ -51,7 +50,9 @@ function findElementIndex(){
 function startEndSetting(e){
     count++;
     if(shift === false){
-        start = e.target;
+        // start = e.target;
+        let result = [...checkBox].filter(el => el.checked === true)
+        start = result[result.length -1];
     }
     if(start && shift === true){
         end = e.target;
