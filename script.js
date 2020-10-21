@@ -6,7 +6,6 @@ let end;
 let shift = false;
 let firstCheck = false;
 let secondCheck = false;
-let count = 0;
 
 function shiftUp(){
     shift = false;
@@ -48,11 +47,9 @@ function findElementIndex(){
 
 
 function startEndSetting(e){
-    count++;
     if(shift === false){
-        // start = e.target;
-        let result = [...checkBox].filter(el => el.checked === true)
-        start = result[result.length -1];
+        let startArray = [...checkBox].filter(el => el.checked === true)
+        start = startArray[startArray.length -1];
     }
     if(start && shift === true){
         end = e.target;
