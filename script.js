@@ -6,6 +6,8 @@ let end;
 let shift = false;
 let firstCheck = false;
 let secondCheck = false;
+let clickedElement = []
+let cheked = false;
 
 function shiftUp(){
     shift = false;
@@ -48,8 +50,13 @@ function findElementIndex(){
 
 function startEndSetting(e){
     if(shift === false){
-        let startArray = [...checkBox].filter(el => el.checked === true)
+        clickedElement.push(e.target);
+        let startArray = clickedElement.filter(el => el.checked === true)
         start = startArray[startArray.length -1];
+        if(startArray == false){
+           const checked = [...checkBox].filter(el => el.checked === true);
+           start = checked[checked.length -1];
+        }
     }
     if(start && shift === true){
         end = e.target;
@@ -61,6 +68,8 @@ function startEndSetting(e){
 
 }
 
-Array.from(checkBox).forEach(box => box.addEventListener("change", startEndSetting));
+Array.from(checkBox).forEach(box => box.addEventListener("change", startEndSetting));//change 말고 click 하면 굳이 let shift는 필요 없는듯
 window.addEventListener("keydown", shiftDown);
 window.addEventListener("keyup", shiftUp);
+
+//html말고 루프로 하는게 유지,버그에는 나은듯 wesbos처럼
